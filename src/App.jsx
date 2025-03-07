@@ -1,102 +1,40 @@
-import logo from './logo.svg';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import './App.css';
+import Home from './components/Pages/Home';
+import About from './components/Pages/About';
+import Resources from './components/Pages/Resources';
+import Partners from './components/Pages/Partners';
+import Contact from './components/Pages/Faleconosco';
 
 function App() {
   return (
-    <>
+    <Router>
       <header>
         <div className="navbar">
-
           <ul className="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">Sobre</a></li>
-            <li><a href="resources.html">Recursos</a></li>
-            <li><a href="partners.html">Parcerias</a></li>
-            <li><a href="fale-conosco.html">Fale conosco</a></li>
+            <li><Link to="/">Home</Link></li>
+            <li><Link to="/about">Sobre</Link></li>
+            <li><Link to="/resources">Recursos</Link></li>
+            <li><Link to="/partners">Parcerias</Link></li>
+            <li><Link to="/contact">Fale conosco</Link></li>
           </ul>
         </div>
       </header>
 
       <main>
-        <section className="hero">
-          <h1>Bem-vindo à plataforma sustentável da EcoRacers</h1>
-          <p>Educando, conscientizando e promovendo mudanças com gamificação.</p>
-          <a href="about.html" class="cta-btn">Saiba Mais</a>
-        </section>
-
-        <section class="features">
-          <h2>Nossos Destaques</h2>
-
-          <div class="card-container">
-            <div class="card">
-              <h3><a href="resources.html">Gamificação Educativa</a></h3>
-              <p>Transformando aprendizado em experiências interativas.</p>
-            </div>
-
-            <div class="card">
-              <h3><a href="resources.html">Soluções Sustentáveis</a></h3>
-              <p>Promovendo práticas que respeitam o meio ambiente.</p>
-            </div>
-
-            <div class="card">
-              <h3><a href="resources.html">Engajamento Social</a></h3>
-              <p>Motivando mudanças de comportamento em crianças e adultos.</p>
-            </div>
-
-          </div>
-        </section>
-
-        <section class="features">
-          <h2>Nossos Destaques</h2>
-
-          <div class="card-container">
-            <div class="card">
-              <h3><a href="resources.html">Gamificação Educativa</a></h3>
-              <p>Transformando aprendizado em experiências interativas.</p>
-            </div>
-
-            <div class="card">
-              <h3><a href="resources.html">Soluções Sustentáveis</a></h3>
-              <p>Promovendo práticas que respeitam o meio ambiente.</p>
-            </div>
-
-            <div class="card">
-              <h3><a href="resources.html">Engajamento Social</a></h3>
-              <p>Motivando mudanças de comportamento em crianças e adultos.</p>
-            </div>
-
-          </div>
-        </section>
-
-        <section class="features">
-          <h2>Nossos Destaques</h2>
-          <div class="card-container">
-            <div class="card">
-              <h3><a href="resources.html">Gamificação Educativa</a></h3>
-              <p>Transformando aprendizado em experiências interativas.</p>
-            </div>
-            <div class="card">
-              <h3><a href="resources.html">Soluções Sustentáveis</a></h3>
-              <p>Promovendo práticas que respeitam o meio ambiente.</p>
-            </div>
-            <div class="card">
-              <h3><a href="resources.html">Engajamento Social</a></h3>
-              <p>Motivando mudanças de comportamento em crianças e adultos.</p>
-            </div>
-          </div>
-        </section>
-
-        <footer>
-          <p>&copy; 2024 Plataforma Sustentável - EcoRacers. Todos os direitos reservados.</p>
-        </footer>
-
-
-
-
-
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/resources" element={<Resources />} />
+          <Route path="/partners" element={<Partners />} />
+          <Route path="/contact" element={<Contact />} />
+        </Routes>
       </main>
 
-    </>
+      <footer>
+        <p>&copy; 2024 Plataforma Sustentável - EcoRacers. Todos os direitos reservados.</p>
+      </footer>
+    </Router>
   );
 }
 
