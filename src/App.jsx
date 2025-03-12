@@ -9,31 +9,33 @@ import Contact from './components/Pages/Faleconosco';
 function App() {
   return (
     <Router>
-      <header>
-        <div className="navbar">
-          <ul className="nav-links">
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/about">Sobre</Link></li>
-            <li><Link to="/resources">Recursos</Link></li>
-            <li><Link to="/partners">Parcerias</Link></li>
-            <li><Link to="/contact">Fale conosco</Link></li>
-          </ul>
-        </div>
-      </header>
+      <div className="app-container">
+        <header>
+          <div className="navbar">
+            <ul className="nav-links">
+              <li><Link to="/">Home</Link></li>
+              <li><Link to="/about">Sobre</Link></li>
+              <li><Link to="/resources">Recursos</Link></li>
+              <li><Link to="/partners">Parcerias</Link></li>
+              <li><Link to="/contact">Fale conosco</Link></li>
+            </ul>
+          </div>
+        </header>
 
-      <main>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/resources" element={<Resources />} />
-          <Route path="/partners" element={<Partners />} />
-          <Route path="/contact" element={<Contact />} />
-        </Routes>
-      </main>
+        <main className="content">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/resources" element={<Resources />} />
+            <Route path="/partners" element={<Partners />} />
+            <Route path="/contact" element={<Contact />} />
+          </Routes>
+        </main>
 
-      <footer>
-        <p>&copy; 2024 Plataforma Sustentável - EcoRacers. Todos os direitos reservados.</p>
-      </footer>
+        <footer>
+          <p>&copy; 2024 Plataforma Sustentável - EcoRacers. Todos os direitos reservados.</p>
+        </footer>
+      </div>
     </Router>
   );
 }

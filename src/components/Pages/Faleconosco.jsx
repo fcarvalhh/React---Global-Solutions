@@ -1,17 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../../App.css';
 
-function enviarFormulario(event) {
-    event.preventDefault();
-    // Adicione aqui a lógica para enviar o formulário
-    console.log("Formulário enviado");
-}
-
 function Contact() {
+    const [formEnviado, setFormEnviado] = useState(false);
+
+    function enviarFormulario(event) {
+        event.preventDefault();
+        setFormEnviado(true);
+
+        // Oculta o alerta após 5 segundos
+        setTimeout(() => {
+            setFormEnviado(false);
+        }, 5000);
+
+        console.log("Formulário enviado");
+    }
+
     return (
         <div className="faleConosco">
-
             <h2>Fale Conosco</h2>
+            
+            <div id="sucesso-alert" className={`sucesso-alert ${formEnviado ? 'mostrar' : ''}`}>
+                <p>Formulário enviado, nossa equipe entrará em contato em breve!</p>
+            </div>
+
             <form id="formulario" onSubmit={enviarFormulario}>
                 <label htmlFor="assunto">Assunto:</label>
                 <input type="text" id="assunto" name="assunto" required />
