@@ -1,5 +1,6 @@
 import React from 'react';
-import '../../App.css';  // Importa o CSS global
+import '../../App.css';
+import { Link } from 'react-router-dom';
 import sapLogo from '../../assets/imagens/sap-png.png';
 import fiaLogo from '../../assets/imagens/fia.png';
 import mahindraLogo from '../../assets/imagens/mahindra.png';
@@ -48,7 +49,7 @@ function Home() {
             <section className="call-to-action">
                 <h2>Quer participar dessa mudança?</h2>
                 <p>Junte-se a nós e faça parte do futuro sustentável!</p>
-                <a href="fale-conosco.html" className="cta-btn">Entre em Contato</a>
+                <Link to="/contact" className="cta-btn">Fale Conosco</Link>
             </section>
         </main>
     );
