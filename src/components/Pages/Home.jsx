@@ -13,7 +13,7 @@ function Home() {
             <section className="hero">
                 <h1>Bem-vindo à plataforma sustentável da EcoRacers</h1>
                 <p>Educando, conscientizando e promovendo mudanças com gamificação.</p>
-                <a href="about.html" className="cta-btn">Saiba Mais</a>
+                <Link to="/about" className="cta-btn">Saiba mais sobre nós</Link>
             </section>
 
             <section className="features">
