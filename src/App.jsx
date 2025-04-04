@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import React, { useState } from 'react';
 import './App.css';
 import Home from './components/Pages/Home';
 import About from './components/Pages/About';
@@ -7,17 +8,30 @@ import Partners from './components/Pages/Partners';
 import Contact from './components/Pages/Faleconosco';
 
 function App() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
+
+  const closeMenu = () => {
+    setMenuOpen(false);
+  };
+
   return (
     <Router>
       <div className="app-container">
         <header>
           <div className="navbar">
-            <ul className="nav-links">
-              <li><Link to="/">Home</Link></li>
-              <li><Link to="/about">Sobre</Link></li>
-              <li><Link to="/resources">Recursos</Link></li>
-              <li><Link to="/partners">Parcerias</Link></li>
-              <li><Link to="/contact">Fale conosco</Link></li>
+            <button className="menu-button" onClick={toggleMenu}>
+              {menuOpen ? '✕' : '☰'}
+            </button>
+            <ul className={`nav-links ${menuOpen ? 'active' : ''}`}>
+              <li><Link to="/" onClick={closeMenu}>Home</Link></li>
+              <li><Link to="/about" onClick={closeMenu}>Sobre</Link></li>
+              <li><Link to="/resources" onClick={closeMenu}>Recursos</Link></li>
+              <li><Link to="/partners" onClick={closeMenu}>Parcerias</Link></li>
+              <li><Link to="/contact" onClick={closeMenu}>Fale conosco</Link></li>
             </ul>
           </div>
         </header>

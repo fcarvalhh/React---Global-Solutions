@@ -22,19 +22,13 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-
 }
-
-
-
 
 .navbar {
   font-family: 'Roboto', sans-serif;
   display: flex;
   justify-content: center;
-  /* Centraliza horizontalmente */
   align-items: center;
-  /* Centraliza verticalmente */
   padding: 1rem 2rem;
   background: #2c3e50;
   color: #fff;
@@ -47,18 +41,19 @@ main {
   font-weight: bold;
 }
 
-
 .nav-links {
   list-style: none;
   display: flex;
   justify-content: center;
+  align-items: center;
   margin: 0;
   padding: 0;
+  width: 100%;
+  gap: 2rem;
 }
 
 .nav-links li {
-  margin: 0 1.5rem;
-
+  margin: 0;
 }
 
 .nav-links a {
@@ -67,17 +62,29 @@ main {
   font-weight: bold;
   transition: color 0.3s ease;
   font-size: 1.3rem;
+  white-space: nowrap;
 }
 
 .nav-links a:hover {
   color: #18bc9c;
 }
 
-.navbar .logo {
-  width: 105%;
-
+.menu-button {
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  position: absolute;
+  left: 1rem;
+  z-index: 1002;
 }
 
+.navbar .logo {
+  width: 105%;
+}
 
 body {
   padding-top: 70px;
@@ -165,10 +172,7 @@ body {
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s cubic-bezier(0.6, -0.28, 0.74, 0.05);
   align-items: center;
-
 }
-
-
 
 .card-aboutus {
   height: 500px;
@@ -183,7 +187,6 @@ body {
   transition: transform 0.3s ease, box-shadow 0.3s cubic-bezier(0.6, -0.28, 0.74, 0.05);
   align-items: center;
   margin: 0px 80px;
-
 }
 
 .card-aboutus h3 {
@@ -205,9 +208,7 @@ body {
   transition: transform 0.3s ease, box-shadow 0.3s cubic-bezier(0.6, -0.28, 0.74, 0.05);
   align-items: center;
   margin: 0px 80px;
-
 }
-
 
 .container {
   max-width: 600px;
@@ -219,10 +220,8 @@ body {
 }
 
 .container h2 {
-
   text-align: center;
 }
-
 
 .question {
   padding: 10px;
@@ -232,9 +231,6 @@ body {
   transition: background-color 0.3s ease;
   /* Suaviza a mudança de cor */
 }
-
-
-
 
 .options {
   list-style: none;
@@ -254,15 +250,12 @@ body {
   background: #c08b8b;
 }
 
-
-
 .partner-logos {
   display: flex;
   width: 100%;
   justify-content: center;
   align-items: center;
 }
-
 
 .card-aboutus:hover {
   transform: rotate(2deg) scale(1.03);
@@ -275,8 +268,6 @@ body {
   box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
   background-color: #f0f8ff;
 }
-
-
 
 .card-group {
   width: 80%;
@@ -302,17 +293,14 @@ body {
   background-color: #f0f8ff;
 }
 
-
 .card h3 a {
   color: #18bc9c;
   margin-bottom: 1rem;
   text-decoration: none;
-
 }
 
 .card p {
   padding: 30px;
-
 }
 
 .partners {
@@ -329,7 +317,6 @@ body {
   display: inline-block;
   vertical-align: middle;
 }
-
 
 .call-to-action {
   text-align: center;
@@ -359,32 +346,125 @@ footer {
 /* Responsividade */
 @media (max-width: 768px) {
   .navbar {
-    flex-direction: column;
-    text-align: center;
+    padding: 1rem;
+    justify-content: center;
+  }
+
+  .menu-button {
+    display: block;
   }
 
   .nav-links {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100vh;
+    background: #2c3e50;
     flex-direction: column;
-    margin-top: 1rem;
+    justify-content: center;
+    align-items: center;
+    transition: 0.3s ease-in-out;
+    z-index: 1001;
+    gap: 2rem;
+  }
+
+  .nav-links.active {
+    left: 0;
   }
 
   .nav-links li {
-    margin: 0.5rem 0;
+    margin: 0;
+  }
+
+  .nav-links a {
+    font-size: 1.4rem;
+    padding: 0.5rem 1rem;
+    display: block;
+  }
+
+  .card-container,
+  .card-container-aboutus,
+  .card-container-partners {
+    flex-direction: column;
+    align-items: center;
+    margin: 10px 0;
+  }
+
+  .card,
+  .card-aboutus,
+  .card-partners {
+    width: 90%;
+    margin: 10px 0;
+  }
+
+  .hero {
+    padding: 2rem 1rem;
+    margin-top: 2rem;
   }
 
   .hero h1 {
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
 
   .hero p {
     font-size: 1rem;
   }
+
+  .partner-logos img {
+    max-width: 80%;
+    height: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    padding: 0.8rem;
+  }
+
+  .nav-links a {
+    font-size: 1.2rem;
+  }
+
+  .hero h1 {
+    font-size: 1.5rem;
+  }
+
+  .card,
+  .card-aboutus,
+  .card-partners {
+    width: 95%;
+    padding: 15px;
+  }
+
+  .menu-button {
+    font-size: 1.3rem;
+  }
+}
+
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+
+footer {
+  margin-top: auto;
+  width: 100%;
+  background: #2c3e50;
+  color: #fff;
+  text-align: center;
+  padding: 1rem;
+  position: relative;
+  bottom: 0;
 }
 
 /* Formatação do formulario até a linha 398*/
-
-
-
 .certa {
   background-color: rgb(33, 155, 74);
   color: white;
@@ -394,8 +474,6 @@ footer {
   background-color: rgb(202, 62, 62);
   color: white;
 }
-
-
 
 .faleConosco {
   width: 60%;
@@ -407,14 +485,12 @@ footer {
   background-image: linear-gradient(to right, #f4f4f9, #ffffff);
 }
 
-
 .faleConosco body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: #f4f4f9;
   margin: 0;
   padding: 0;
 }
-
 
 .faleConosco h2 {
   text-align: center;
@@ -431,19 +507,16 @@ footer {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-
 .faleConosco form {
   display: grid;
   gap: 25px;
 }
-
 
 .faleConosco label {
   font-size: 16px;
   color: #333;
   font-weight: bold;
 }
-
 
 .faleConosco input,
 .faleConosco select,
@@ -470,7 +543,6 @@ footer {
   height: 150px;
 }
 
-
 .faleConosco button {
   padding: 12px 30px;
   background-color: #18bc9c;
@@ -482,12 +554,10 @@ footer {
   transition: background-color 0.3s ease;
 }
 
-
 .faleConosco button:hover {
   background-color: #1abc9c;
   transform: translateY(-3px);
 }
-
 
 .faleConosco .form-group {
   display: flex;
@@ -498,14 +568,12 @@ footer {
   width: 48%;
 }
 
-
 .faleConosco input,
 .faleConosco textarea,
 .faleConosco select {
   border-radius: 12px;
   border: 2px solid #ddd;
 }
-
 
 .faleConosco input:focus,
 .faleConosco select:focus,
@@ -537,8 +605,6 @@ footer {
   opacity: 1;
   visibility: visible;
 }
-
-
 
 .sucesso-alert p {
   margin: 0;
