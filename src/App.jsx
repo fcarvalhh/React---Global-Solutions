@@ -6,6 +6,7 @@ import About from './components/Pages/About';
 import Resources from './components/Pages/Resources';
 import Partners from './components/Pages/Partners';
 import Contact from './components/Pages/Faleconosco';
+import SustainabilityTracker from './components/SustainabilityTracker/SustainabilityTracker';
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -31,6 +32,7 @@ function App() {
               <li><Link to="/about" onClick={closeMenu}>Sobre</Link></li>
               <li><Link to="/resources" onClick={closeMenu}>Recursos</Link></li>
               <li><Link to="/partners" onClick={closeMenu}>Parcerias</Link></li>
+              <li><Link to="/tracker" onClick={closeMenu}>Rastreador Eco</Link></li>
               <li><Link to="/contact" onClick={closeMenu}>Fale conosco</Link></li>
             </ul>
           </div>
@@ -42,6 +44,7 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/resources" element={<Resources />} />
             <Route path="/partners" element={<Partners />} />
+            <Route path="/tracker" element={<SustainabilityTracker />} />
             <Route path="/contact" element={<Contact />} />
           </Routes>
         </main>

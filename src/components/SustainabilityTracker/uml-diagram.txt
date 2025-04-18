@@ -1,0 +1,44 @@
++-------------------------------+
+|     SustainabilityTracker     |
++-------------------------------+
+| - actions: Array              |
+| - impact: Object              |
++-------------------------------+
+| + addAction()                 |
+| + deleteAction()              |
+| + calculateTotalImpact()      |
+| + render()                    |
++-------------------------------+
+              |
+              | composição
+              |
+  +-----------+-----------+
+  |           |           |
+  v           v           v
++-------------+ +--------+ +------------+
+|  ActionForm | |ActionList| |ActionImpact|
++-------------+ +--------+ +------------+
+| - actionType| | - actions| | - impact  |
+| - quantity  | +--------+ +------------+
+| - date      | | +formatDate()| | +formatNumber()|
++-------------+ | +render()| | +renderImpactItem()|
+| +handleSubmit()| +--------+ | +render()  |
+| +handleInputChange()| |         +------------+
+| +render()    | |                   |
++-------------+ |                   |
+      ^         |                   |
+      |         |                   |
+      |         v                   |
+      |    +---------+             |
+      |    |  props  |             |
+      |    +---------+             |
+      |         |                   |
+      |         v                   |
+      |    +----------+            |
+      +--->| onAddAction |<---------+
+           +----------+
+                |
+                v
+           +----------+
+           |onDeleteAction|
+           +----------+ 

@@ -1,0 +1,53 @@
+@startuml
+
+' Definição das classes
+class SustainabilityTracker {
+  - actions: Array
+  - impact: Object
+  + addAction(actionType, quantity, date): void
+  + deleteAction(actionId): void
+  + calculateTotalImpact(): void
+  + render(): JSX.Element
+}
+
+class ActionForm {
+  - actionType: string
+  - quantity: number
+  - date: string
+  + handleSubmit(e): void
+  + handleInputChange(e): void
+  + render(): JSX.Element
+}
+
+class ActionList {
+  - actions: Array
+  + formatDate(isoDate): string
+  + render(): JSX.Element
+}
+
+class ActionImpact {
+  - impact: Object
+  + formatNumber(num): string
+  + renderImpactItem(value, label, unit, icon): JSX.Element
+  + render(): JSX.Element
+}
+
+class Action {
+  - id: number
+  - type: string
+  - quantity: number
+  - date: string
+  - typeName: string
+  - unit: string
+}
+
+' Definição dos relacionamentos
+SustainabilityTracker *--> ActionForm : composição
+SustainabilityTracker *--> ActionList : composição
+SustainabilityTracker *--> ActionImpact : composição
+SustainabilityTracker o--> "0..*" Action : contém
+ActionForm --> SustainabilityTracker : onAddAction()
+ActionList --> SustainabilityTracker : onDeleteAction()
+ActionImpact ..> SustainabilityTracker : recebe impact
+
+@enduml 
