@@ -1,70 +1,79 @@
-# Getting Started with Create React App
+# Rastreador de Ações Sustentáveis - Diagrama UML
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este componente implementa um rastreador de ações sustentáveis que permite aos usuários registrar suas ações diárias em prol do meio ambiente e visualizar o impacto ambiental positivo que estão causando.
 
-## Available Scripts
+## Descrição dos Componentes
 
-In the project directory, you can run:
+### SustainabilityTracker
+Componente principal que gerencia o estado global das ações sustentáveis.
 
-### `npm start`
+**Atributos**:
+- `actions`: Array de objetos contendo as ações registradas
+- `impact`: Objeto com métricas de impacto (água economizada, CO2 reduzido, etc.)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+**Métodos**:
+- `addAction(actionType, quantity, date)`: Adiciona uma nova ação
+- `deleteAction(actionId)`: Remove uma ação existente
+- `calculateTotalImpact()`: Calcula o impacto total de todas as ações
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### ActionForm
+Componente responsável pelo formulário de registro de novas ações sustentáveis.
 
-### `npm test`
+**Atributos**:
+- `actionType`: String representando o tipo de ação selecionada
+- `quantity`: Número representando a quantidade da ação
+- `date`: Data em que a ação foi realizada
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+**Métodos**:
+- `handleSubmit(e)`: Processa o envio do formulário
+- `handleInputChange(e)`: Atualiza o estado com as mudanças nos campos do formulário
 
-### `npm run build`
+### ActionList
+Componente que exibe a lista de ações registradas pelo usuário.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+**Atributos**:
+- `actions`: Array de ações recebido via props do SustainabilityTracker
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+**Métodos**:
+- `formatDate(isoDate)`: Formata a data para exibição
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### ActionImpact
+Componente que calcula e exibe métricas de impacto ambiental.
 
-### `npm run eject`
+**Atributos**:
+- `impact`: Objeto com métricas de impacto recebido via props
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+**Métodos**:
+- `formatNumber(num)`: Formata números para exibição
+- `renderImpactItem(value, label, unit, icon)`: Renderiza um item de impacto
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Action
+Modelo de dados que representa uma ação sustentável.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+**Atributos**:
+- `id`: Identificador único da ação
+- `type`: Tipo da ação (ex: WATER_SAVING)
+- `quantity`: Quantidade da ação
+- `date`: Data em que a ação foi realizada
+- `typeName`: Nome legível do tipo da ação
+- `unit`: Unidade de medida
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Relacionamentos entre Classes
 
-## Learn More
+- **Composição**: SustainabilityTracker contém ActionForm, ActionList e ActionImpact
+- **Composição**: SustainabilityTracker contém múltiplas instâncias de Action
+- **Associação**: ActionForm se comunica com SustainabilityTracker através da função onAddAction
+- **Associação**: ActionList se comunica com SustainabilityTracker através da função onDeleteAction
+- **Dependência**: ActionImpact depende dos dados de impacto calculados pelo SustainabilityTracker
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Diagrama de Classes UML
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+O diagrama abaixo mostra os relacionamentos entre os componentes React do sistema:
 
-### Code Splitting
+![Diagrama de Classes UML](./src/assets/imagens/uml-diagrama.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Representação ASCII do Diagrama
 
-### Analyzing the Bundle Size
+Uma representação simplificada do diagrama em ASCII está disponível no arquivo `uml-diagram.txt`.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+O diagrama ilustra os componentes principais do sistema, seus atributos, métodos e relacionamentos, seguindo a notação UML adaptada para a arquitetura de componentes React. 
