@@ -68,15 +68,9 @@ Modelo de dados que representa uma ação sustentável.
 
 ## Diagrama de Classes UML
 
-O diagrama UML pode ser gerado a partir do código PlantUML disponível no arquivo `uml-diagram-code.txt`. 
+O diagrama abaixo mostra os relacionamentos entre os componentes React do sistema:
 
-Para gerar o diagrama:
-1. Acesse: [PlantUML Online Editor](https://www.planttext.com/)
-2. Copie o conteúdo do arquivo `uml-diagram-code.txt`
-3. Cole no editor online e clique em "Refresh"
-4. O diagrama será gerado e poderá ser baixado como imagem
-
-Alternativamente, utilize o plugin PlantUML para VSCode ou outras ferramentas compatíveis.
+![Diagrama de Classes UML](./assets/imagens/uml-diagrama.png)
 
 ## Representação ASCII do Diagrama
 
