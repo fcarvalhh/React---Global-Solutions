@@ -73,6 +73,7 @@ O diagrama abaixo mostra os relacionamentos entre os componentes React do sistem
 ![Diagrama de Classes UML](./src/assets/imagens/uml-diagrama.png)
 
 
+
 ## Representação ASCII do Diagrama
 
 Uma representação simplificada do diagrama em ASCII está disponível no arquivo `uml-diagram.txt`.
