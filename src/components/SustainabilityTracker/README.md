@@ -70,7 +70,8 @@ Modelo de dados que representa uma ação sustentável.
 
 O diagrama abaixo mostra os relacionamentos entre os componentes React do sistema:
 
-![Diagrama de Classes UML](./src/assets/imagens/uml-diagrama.png)
+![Diagrama de Classes UML](../../../src/assets/imagens/uml-diagrama.png)
+
 
 
 
