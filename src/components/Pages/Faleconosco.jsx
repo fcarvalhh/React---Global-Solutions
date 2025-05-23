@@ -1,19 +1,47 @@
 import React, { useState } from 'react';
 import '../../App.css';
+import emailjs from '@emailjs/browser';
 
 function Contact() {
     const [formEnviado, setFormEnviado] = useState(false);
 
-    function enviarFormulario(event) {
-        event.preventDefault();
-        setFormEnviado(true);
+   async function enviarFormulario(event) {
+  event.preventDefault();
 
-        // Oculta o alerta após 5 segundos
-        setTimeout(() => {
-            setFormEnviado(false);
-        }, 5000);
+    const form = event.target;
+    const title = form.assunto.value.trim();
+    const name = form.nome.value.trim();
+    const email = form.email.value.trim();
+    const telefone = form.telefone.value.trim();
 
-        console.log("Formulário enviado");
+  const SERVICE_ID = "service_cqcfpfl";
+  const TEMPLATE_ID = "template_m4wtvq9";
+  const USER_ID = "gYwp8noz9cNoGjsup";
+
+  try {
+    const response = await emailjs.send(
+      SERVICE_ID,
+      TEMPLATE_ID,
+      {
+        title,
+        name,
+        email,
+        message: `Obrigado pelo contato ${name}, daqui a pouco nós entraremos em contato para falar sobre "${title}",
+        daqui a pouco entraremos em contato com o seu número que é ${telefone}`,
+      },
+      USER_ID
+    );
+
+    console.log(response);
+    setFormEnviado(true);
+    form.reset();
+
+    setTimeout(() => {
+      setFormEnviado(false);
+    }, 5000);
+  } catch (error) {
+    console.error("Erro ao enviar email:", error);
+  }
     }
 
     return (
@@ -23,7 +51,7 @@ function Contact() {
             <div id="sucesso-alert" className={`sucesso-alert ${formEnviado ? 'mostrar' : ''}`}>
                 <p>Formulário enviado, nossa equipe entrará em contato em breve!</p>
             </div>
-
+            
             <form id="formulario" onSubmit={enviarFormulario}>
                 <label htmlFor="assunto">Assunto:</label>
                 <input type="text" id="assunto" name="assunto" required />
