@@ -1,14 +1,11 @@
 import React from 'react';
+import ImpactChart from './ImpactChart'; // importe o gráfico
 
 function ActionImpact({ impact }) {
-    // Função para formatar números com 2 casas decimais
-    const formatNumber = (num) => {
-        return num.toFixed(2).replace('.', ',');
-    };
+    const formatNumber = (num) => num.toFixed(2).replace('.', ',');
 
     const renderImpactItem = (value, label, unit, icon) => {
         if (value <= 0) return null;
-
         return (
             <div className="impact-item">
                 <span className="impact-icon">{icon}</span>
@@ -20,37 +17,50 @@ function ActionImpact({ impact }) {
         );
     };
 
-    // Converter CO2 em árvores (estimativa simplificada)
-    const treesEquivalent = impact.co2Reduced / 22; // Uma árvore absorve cerca de 22kg de CO2 por ano
+    const treesEquivalent = impact.co2Reduced / 22;
+
+    const isEmptyImpact = impact.waterSaved + impact.co2Reduced + impact.resourcesSaved + impact.pollutionReduced <= 0;
+
+    // Conversão para o gráfico
+    const chartImpact = {
+        water: impact.waterSaved || 0,
+        co2: impact.co2Reduced || 0,
+        energy: impact.resourcesSaved || 0, // usando resourcesSaved como "energia" estimada
+    };
 
     return (
         <div className="impact-container">
             <h3>Seu Impacto Positivo</h3>
 
-            {impact.waterSaved + impact.co2Reduced + impact.resourcesSaved + impact.pollutionReduced <= 0 ? (
+            {isEmptyImpact ? (
                 <p className="no-impact">Comece a registrar suas ações para ver seu impacto!</p>
             ) : (
-                <div className="impact-grid">
-                    {renderImpactItem(impact.waterSaved, 'de água economizada', 'litros', '💧')}
-                    {renderImpactItem(impact.co2Reduced, 'de CO₂ não emitido', 'kg', '🌿')}
-                    {renderImpactItem(impact.resourcesSaved, 'de recursos naturais preservados', 'unidades', '🌎')}
-                    {renderImpactItem(impact.pollutionReduced, 'de poluição evitada', 'unidades', '✨')}
+                <>
+                    <div className="impact-grid">
+                        {renderImpactItem(impact.waterSaved, 'de água economizada', 'litros', '💧')}
+                        {renderImpactItem(impact.co2Reduced, 'de CO₂ não emitido', 'kg', '🌿')}
+                        {renderImpactItem(impact.resourcesSaved, 'de recursos naturais preservados', 'unidades', '🌎')}
+                        {renderImpactItem(impact.pollutionReduced, 'de poluição evitada', 'unidades', '✨')}
 
-                    {impact.co2Reduced > 0 && (
-                        <div className="tree-equivalent">
-                            <p>
-                                <span className="tree-icon">🌳</span>
-                                <span>
-                                    Seu impacto equivale a <strong>{formatNumber(treesEquivalent)}</strong> árvores
-                                    absorvendo CO₂ por um ano!
-                                </span>
-                            </p>
-                        </div>
-                    )}
-                </div>
+                        {impact.co2Reduced > 0 && (
+                            <div className="tree-equivalent">
+                                <p>
+                                    <span className="tree-icon">🌳</span>
+                                    <span>
+                                        Seu impacto equivale a <strong>{formatNumber(treesEquivalent)}</strong> árvores
+                                        absorvendo CO₂ por um ano!
+                                    </span>
+                                </p>
+                            </div>
+                        )}
+                    </div>
+
+                    {/* Gráfico de impacto ambiental */}
+                    <ImpactChart impact={chartImpact} />
+                </>
             )}
         </div>
     );
 }
 
-export default ActionImpact; 
+export default ActionImpact;
