@@ -10,6 +10,7 @@ function Register() {
 
   const isEmailValid = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
+
   const handleRegister = () => {
     if (!email || !senha) {
       toast.error('Preencha todos os campos!');
@@ -26,11 +27,23 @@ function Register() {
       return;
     }
 
-    const newUser = { email, senha };
-    localStorage.setItem('usuario', JSON.stringify(newUser));
-    toast.success('Cadastro realizado com sucesso!');
+    // Busca usuários existentes ou inicia array vazio
+    const users = JSON.parse(localStorage.getItem('usuarios')) || [];
 
-    // Redireciona após 1 segundo para o login
+    // Verifica duplicação
+    const exists = users.find((user) => user.email === email);
+
+    if (exists) {
+      toast.error('Este email já está cadastrado!');
+      return;
+    }
+
+    // Adiciona novo usuário
+    const newUser = { email, senha };
+    users.push(newUser);
+    localStorage.setItem('usuarios', JSON.stringify(users));
+
+    toast.success('Cadastro realizado com sucesso!');
     setTimeout(() => navigate('/login'), 1000);
   };
 

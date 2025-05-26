@@ -52,3 +52,29 @@
 .auth-container a:hover {
   text-decoration: underline;
 }
+
+.logout-btn {
+  background: none;
+  border: none;
+  color: #f44336;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 14px;
+  margin-left: 10px;
+}
+
+.logout-link {
+  background: none;
+  border: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  text-align: left;
+  padding: 0;
+  margin: 0;
+}
+.logout-link:hover {
+  text-decoration: underline;
+}
+
+
